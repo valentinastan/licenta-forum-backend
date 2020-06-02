@@ -18,5 +18,9 @@ app.use((req, res, next) => {
 app.use('/api', commentsRoutes)
 app.use('/api', postsRoutes)
 
+port = process.env.PORT
+if(process.env.NODE_ENV === "development"){
+  port = 2020
+}
 
-app.listen(2222)
+app.listen(port)
