@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     seen: DataTypes.BOOLEAN
   }, {});
   Notification.associate = function(models) {
-    Notification.belongsTo(models.User);
-    Notification.belongsTo(models.Post);
+    //Notification.belongsTo(models.User);
+    //Notification.belongsTo(models.Post);
   };
   return Notification;
 };

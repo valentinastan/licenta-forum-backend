@@ -10,19 +10,19 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
-        references: {
-          model: 'Users', // name of Target model
-          key: 'id', // key in Target model that we're referencing
-        },
-        onDelete: 'CASCADE',
+        // references: {
+        //   model: 'Users', // name of Target model
+        //   key: 'id', // key in Target model that we're referencing
+        // },
+        // onDelete: 'CASCADE',
       },
       postId: {
         type: Sequelize.INTEGER,
-        references: {
-          model: 'Posts', // name of Target model
-          key: 'id', // key in Target model that we're referencing
-        },
-        onDelete: 'CASCADE',
+        // references: {
+        //   model: 'Posts', // name of Target model
+        //   key: 'id', // key in Target model that we're referencing
+        // },
+        // onDelete: 'CASCADE',
       },
       seen: {
         type: Sequelize.BOOLEAN,

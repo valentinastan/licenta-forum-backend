@@ -5,10 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING
   }, {});
   User.associate = function(models) {
-    User.hasMany(models.Post);
-    User.hasMany(models.Notification);
-    User.hasMany(models.Comment);
-    User.hasMany(models.Reaction);
+    // User.hasMany(models.Post);
+    // User.hasMany(models.Notification);
+    // User.hasMany(models.Comment);
+    // User.hasMany(models.Reaction);
   };
   return User;
 };

@@ -7,9 +7,9 @@ module.exports = (sequelize, DataTypes) => {
     reactionType: DataTypes.STRING
   }, {});
   Reaction.associate = function(models) {
-    Reaction.belongsTo(models.User);
-    Reaction.belongsTo(models.Post);
-    Reaction.belongsTo(models.Comment);
+    // Reaction.belongsTo(models.User);
+    // Reaction.belongsTo(models.Post);
+    // Reaction.belongsTo(models.Comment);
   };
   return Reaction;
 };

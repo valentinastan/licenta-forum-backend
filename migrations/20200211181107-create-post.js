@@ -10,18 +10,18 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
-        references: {
-          model: 'Users', // name of Target model
-          key: 'id', // key in Target model that we're referencing
-        },
-        onDelete: 'CASCADE',
-        allowNull: true,
+        // references: {
+        //   model: 'Users', // name of Target model
+        //   key: 'id', // key in Target model that we're referencing
+        // },
+        // onDelete: 'CASCADE',
+        // allowNull: true,
       },
       title: {
         type: Sequelize.STRING
       },
       text: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       likes: {
         type: Sequelize.INTEGER,
