@@ -17,23 +17,26 @@ module.exports = {
         // onDelete: 'CASCADE',
         // allowNull: false,
       },
+      userIp: {
+        type: Sequelize.STRING
+      },
       postId: {
         type: Sequelize.INTEGER,
-        // references: {
-        //   model: 'Posts', // name of Target model
-        //   key: 'id', // key in Target model that we're referencing
-        // },
-        // onDelete: 'CASCADE',
-        // allowNull: true,
+        references: {
+          model: 'Posts', // name of Target model
+          key: 'id', // key in Target model that we're referencing
+        },
+        onDelete: 'CASCADE',
+        allowNull: true,
       },
       commentId: {
         type: Sequelize.INTEGER,
-        // references: {
-        //   model: 'Comments', // name of Target model
-        //   key: 'id', // key in Target model that we're referencing
-        // },
-        // onDelete: 'CASCADE',
-        // allowNull: true,
+        references: {
+          model: 'Comments', // name of Target model
+          key: 'id', // key in Target model that we're referencing
+        },
+        onDelete: 'CASCADE',
+        allowNull: true,
       },
       reactionType: {
         type: Sequelize.STRING

@@ -44,6 +44,7 @@ exports.like = async (res, req, next) => {
   const reactions = await Reaction.findAll({
     where: {
       userId: 1,
+      userIp: req.ip,
       postId,
     }
   })
@@ -52,7 +53,7 @@ exports.like = async (res, req, next) => {
   if(reactions.length === 0 || reactions[0].reactionType !== 'like') {
     const t = await sequelize.transaction();
     try {
-      await Reaction.create({userId: 1, postId, reactionType: 'like'})
+      await Reaction.create({userId: 1, userIp: req.ip, postId, reactionType: 'like'})
       let updatePostParams = {likes: post.likes + 1}
       if(reactions.length !== 0 && reactions[0].reactionType === 'dislike') {
         await reactions[0].destroy()
@@ -85,6 +86,7 @@ exports.dislike = async (req, res, next) => {
   const reactions = await Reaction.findAll({
     where: {
       userId: 1,
+      userIp: req.ip,
       postId
     }
   })
@@ -93,7 +95,7 @@ exports.dislike = async (req, res, next) => {
   if(reactions[0].length === 0 || reactions[0].reactionType !== 'dislike') {
     const t = await sequelize.transaction();
     try {
-      await Reaction.create({userId: 1, postId, reactionType: 'dislike'})
+      await Reaction.create({userId: 1, userIp: req.ip, postId, reactionType: 'dislike'})
         let updatePostParams = {dislikes: post.dislikes + 1}
       if(reactions[0].length !== 0 && reactions[0].reactionType === 'like') {
         await reactions[0].destroy()

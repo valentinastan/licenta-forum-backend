@@ -29,6 +29,7 @@ exports.like = async (req, res, next) => {
   let reactions = await Reaction.findAll({
     where: {
       userId: 1,
+      userIp: req.ip,
       commentId
     }
   })
@@ -39,7 +40,7 @@ exports.like = async (req, res, next) => {
     //console.log(reactions[0].reactionType)
     const t = await sequelize.transaction();
     try {
-      await Reaction.create({userId:1, commentId, reactionType: 'like'})
+      await Reaction.create({userId:1, userIp: req.ip, commentId, reactionType: 'like'})
       let updatedCommentParams = {likes: comment.likes + 1}
       if(reactions.length !== 0 && reactions[0].reactionType === 'dislike') {
         await reactions[0].destroy()
@@ -74,6 +75,7 @@ exports.dislike = async (req, res, next) => {
   let reactions = await Reaction.findAll({
     where: {
       userId: 1,
+      userIp: req.ip,
       commentId
     }
   })
@@ -82,7 +84,7 @@ exports.dislike = async (req, res, next) => {
   if(reactions.length === 0 || reactions[0].reactionType !== 'dislike') {
     const t = await sequelize.transaction();
     try {
-      await Reaction.create({userId: 1, commentId, reactionType: 'dislike'})
+      await Reaction.create({userId: 1, userIp: req.ip, commentId, reactionType: 'dislike'})
       let updatedCommentParams = {dislikes: comment.dislikes + 1}
       if(reactions.length !== 0 && reactions[0].reactionType === 'like') {
         await reactions[0].destroy()
@@ -112,12 +114,12 @@ exports.dislike = async (req, res, next) => {
 
 exports.delete = async (req, res, next) => {
   const {
-    id,
+    commentId: id,
   } = req.params
 
   const deletedComment = Comment.destroy({
     where: {
-      id: id,
+      id,
     }
   })
 
