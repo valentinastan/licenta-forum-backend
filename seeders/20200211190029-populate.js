@@ -1,6 +1,9 @@
 'use strict';
 const bcrypt = require('bcryptjs');
 
+const models = require('../models/index')
+const Post = models.Post
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Posts', [{
@@ -66,222 +69,224 @@ module.exports = {
       title: "Thinner and yellow vegetables",
       text:"I have a little problem. I've noticed, not so long ago, that the leaves of my recently planted vegetables started growing thinner and yellow. I water then properly. Does anyone know what the cause might be and what I could do to stop it?",
     }], {}).then(() => {
-      return queryInterface.bulkInsert('Comments', [{
+      return Post.findAll().then((posts) => {
+        console.log('HI THESE ARE THE POSTS', posts)
+        return queryInterface.bulkInsert('Comments', [{
         // userId: 2,
-        postId: 1,
+        postId: posts[0].id,
         text: "It happened to me too.",
         // likes: 2,
         // dislikes: 0,
       },
       {
-        postId: 1,
+        postId: posts[0].id,
         text: "Try to add some vitamins to the plants when you water them.",
       },
       {
-        postId: 1,
+        postId: posts[0].id,
         text: "Can you try adding some nitrogen. You can see what quantities on the label.",
       },
       {
-        postId: 1,
+        postId: posts[0].id,
         text: "It's your fault for sure, you didn't water them on time.",
       },
       {
-        postId: 2,
+        postId: posts[1].id,
         text: "You can check the acidity of the soil.",
       },
       {
-        postId: 2,
+        postId: posts[1].id,
         text: "A cause can be the oscillating temperatures.",
       },
       {
-        postId: 2,
+        postId: posts[1].id,
         text: "When you water them, did you try adding some vitamins. Or to spraying them with substances that protect them against pests.",
       },
       {
-        postId: 3,
+        postId: posts[2].id,
         text: "It's called Anthracnose, google it!",
       },
       {
-        postId: 3,
+        postId: posts[2].id,
         text: "You should apply liquid copper or neem sprays before and during the infection periods.",
       },
       {
-        postId: 3,
+        postId: posts[2].id,
         text: "Yes, start to apply them just as the leaf buds break in early spring. ",
       },
       {
-        postId: 3,
+        postId: posts[2].id,
         text: "Your crop is done for this year!",
       },
       {
-        postId: 4,
+        postId: posts[3].id,
         text: "I have no idea.",
       },
       {
-        postId: 4,
+        postId: posts[3].id,
         text: "I have the same problem.",
       },
       {
-        postId: 4,
+        postId: posts[3].id,
         text: "Did you guys find a solution?",
       },
       {
-        postId: 4,
+        postId: posts[3].id,
         text: "O yeah , 1 year ago now I don't remember!",
       },
       {
-        postId: 4,
+        postId: posts[3].id,
         text: "Hey OP, do you still have the issue?",
       },
       {
-        postId: 4,
+        postId: posts[3].id,
         text: "NO, PLANTS DIED! I later found out they had Bacterial Leaf Spots.",
       },
       {
-        postId: 4,
+        postId: posts[3].id,
         text: "What did you do?",
       },
       {
-        postId: 4,
+        postId: posts[3].id,
         text: "There is no cure currently. You need to apply copper or sulfur based fungicides every week at first sign of disease to prevent the spread. Destroy the heavily infected plants.",
       },
       {
-        postId: 5,
+        postId: posts[4].id,
         text: "Were the roots distorted or swollen in any way?",
       },
       {
-        postId: 5,
+        postId: posts[4].id,
         text: "Yes, they were!",
       },
       {
-        postId: 5,
+        postId: posts[4].id,
         text: "Oh then it sounds like club root, You can't use fungicides or pesticides, it won't help. The micro-organism that causes this lives in the soil, try rotating with disease-resistant varieties, otherwise nothing can help you.",
       },
       {
-        postId: 5,
+        postId: posts[4].id,
         text: "Thank you are really great, I love you!",
       },
       {
-        postId: 5,
+        postId: posts[4].id,
         text: "I love you too! Give me your number!",
       },
       {
-        postId: 6,
+        postId: posts[5].id,
         text: "Yes! You also have to water in the early morning so the plants can be dry during the day. Apply copper fungicides every 7-10 days until you harvest.",
       },
       {
-        postId: 6,
+        postId: posts[5].id,
         text: "Don't forget to dispose of severely infected plants, they can't be saved.",
       },
       {
-        postId: 6,
+        postId: posts[5].id,
         text: "Neither can your soul!",
       },
       {
-        postId: 7,
+        postId: posts[6].id,
         text: "I don't know.",
       },
       {
-        postId: 7,
+        postId: posts[5].id,
         text: "Sounds like your plants will start dying.",
       },
       {
-        postId: 7,
+        postId: posts[6].id,
         text: "It's Early Blight for sure. The leaves can actually die from die. You have to use a copper-based fungicide early, two weeks before the disease or at least when weather forecasts predict a long period of wet weather.",
       },
       {
-        postId: 7,
+        postId: posts[6].id,
         text: "The guy above is right.",
       },
       {
-        postId: 8,
+        postId: posts[7].id,
         text: "Aaaa, this is clearly Late Blight. Your plants will rot and die in wet weather.",
       },
       {
-        postId: 8,
+        postId: posts[7].id,
         text: "If it is Late Blight then apply copper sprays every 7 days or less, following heavy rain or when the amount of disease is increasing rapidly.",
       },
       {
-        postId: 9,
+        postId: posts[8].id,
         text: "First you must determine what they have.",
       },
       {
-        postId: 9,
+        postId: posts[8].id,
         text: "I guess it's mosaic virus. You can't do anything about it just remove the infected plants so others don't get infected. ",
       },
       {
-        postId: 10,
+        postId: posts[9].id,
         text: "Sounds like your brother has Powdery Mildew on this plants. You need to prune or stake the plants to improve air circulation. You can also apply GreenCure or sulfur fungicides weekly to prevent infection. If a plant is heavily infected you should remove it.",
       },
       {
-        postId: 10,
+        postId: posts[9].id,
         text: "This guy is right!",
       },
       {
-        postId: 10,
+        postId: posts[9].id,
         text: "Weren't they just dusty ? ",
       },
       {
-        postId: 11,
+        postId: posts[10].id,
         text: "This is rust! You can prevent it with good air circulation around crops. Remove the plants that have been infected or they will infect your other plants too. ",
       },
       {
-        postId: 11,
+        postId: posts[10].id,
         text: "You should dust plants with sulfur power, early in the season, to prevent infection or to keep mild problems from spreading.",
       },
       {
-        postId: 12,
+        postId: posts[11].id,
         text: "Are you sure? What makes you think this? You can try to use soil solarization before planting but other than that... there's not much you can do",
       },
       {
-        postId: 12,
+        postId: posts[11].id,
         text: "Yes .. they started wilting and some parts started to go yellow.",
       },
       {
-        postId: 12,
+        postId: posts[11].id,
         text: "Then you might be right. Crop rotation does not help ... there is nothing else you can actively do.",
       },
       {
-        postId: 13,
+        postId: posts[12].id,
         text: "To be honest I am not scared of food running short anytime soon. Prices on the other hand will go up for sure. As the production output is going down, the prices will go up.",
       },
       {
-        postId: 13,
+        postId: posts[12].id,
         text: "The workers will suffer also as they won't have a steady income anymore. This pandemic is the worst.",
       },
       {
-        postId: 13,
+        postId: posts[12].id,
         text: "Hope we will all get to normal and everyone is safe!",
       },
       {
-        postId: 13,
+        postId: posts[12].id,
         text: "I am sure the governments will support us, there is no other way, we are losing way to much profit.",
       },
       {
-        postId: 14,
+        postId: posts[13].id,
         text: "That's exactly what happened to me in Ialomita, about 10km from Slobozia! The wind managed to damage my and my nightbour's greenhouses. The damage is great. As far as the plants are concerned there is no alternative. I guess some of them will still grow but will produce less.",
       },
       {
-        postId: 14,
+        postId: posts[13].id,
         text: "Exactly, all the country has suffered from strong winds. I have yet to plant my crop, but the wind destroyed 3 greenhouses. Give nutrients to the plants and God's mercy.",
       },
       {
-        postId: 15,
+        postId: posts[14].id,
         text: "It happened exactly the same to me. A neighbour told me to give them vitamins, however I have no idea what and I don't want to risk it.",
       },
       {
-        postId: 15,
+        postId: posts[14].id,
         text: "This sounds like lack of nitrogen in the soil. Because of this your plants might not even grow properly.",
       },
       {
-        postId: 15,
+        postId: posts[14].id,
         text: "Lack of nitrogen most likely. You will find this problem in soils that are sandy, lack organic matter, or acidic. Excess humidity can determine poor activity from bacteria that could decompose organic matter and raise the nitrogen levels.",
       },
       {
-        postId: 15,
+        postId: posts[14].id,
         text: "Nitrogen is an essential elements that greatly influences the production of vegetables. In the case of lack of nitrogen, plants do not grow, and the leaves can present disease like simptoms, exactly what you are describing.",
       },
-    ], {})
+    ], {})})
       // .then(() => {
       //   return queryInterface.bulkInsert('Notifications', [{
       //     userId: 2,
