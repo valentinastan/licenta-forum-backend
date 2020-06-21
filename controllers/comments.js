@@ -2,6 +2,8 @@ const models = require('../models/index')
 const Comment = models.Comment
 const Reaction = models.Reaction
 const sequelize = models.sequelize
+const cognitiveSerice = require('../services/cognitiveApi')
+const { response } = require('express')
 
 exports.index = async (req, res, next) => {
 
@@ -17,9 +19,9 @@ exports.index = async (req, res, next) => {
 exports.create = async (req, res, next) => {
   const { text } = req.body
   const { postId } = req.params
-
-  const comment = await Comment.create({postId, userId: 1, text})
-
+  const { sentiment } = await cognitiveSerice.analyzeText(text)
+  const comment = await Comment.create({postId, userId: 1, text, sentiment})
+ 
   res.status(200).json(comment)
 }
 

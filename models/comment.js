@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER,
     text: DataTypes.TEXT,
     likes: DataTypes.INTEGER,
-    dislikes: DataTypes.INTEGER
+    dislikes: DataTypes.INTEGER,
+    sentiment: DataTypes.STRING
   }, {});
   Comment.associate = function(models) {
     //Comment.belongsTo(models.User);
